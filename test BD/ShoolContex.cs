@@ -19,7 +19,7 @@ namespace test_BD
                 //.WithMany(g => g.Recivers)
                 //.HasForeignKey<int>(s => s.Id);
                 .HasOptional(a => a.Ivent)
-                .WithRequired(a => a.Organizator);
+                .WithRequired(a => a.Student);
 
             modelBuilder.Entity<Student>()
                 .HasMany<Ivent>(s => s.Ivents)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace test_BD
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual Student Organizator { get; set; }
+        public int Organizator { get; set; }
+        [ForeignKey("Organizator")]
+        public virtual Student Student { get; set; }
         //public virtual Student Student { get; set; }
         public virtual ICollection<Student> Recivers { get; set; }
     }
