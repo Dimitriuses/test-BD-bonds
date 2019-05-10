@@ -14,16 +14,11 @@ namespace test_BD
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures one-to-many relationship
-            modelBuilder.Entity<Student>()
-                //.HasRequired<Ivent>(s => s.Ivent)
-                //.WithMany(g => g.Recivers)
-                //.HasForeignKey<int>(s => s.Id);
-                .HasOptional(a => a.Ivent)
-                .WithRequired(a => a.Student);
+            
 
             modelBuilder.Entity<Student>()
                 .HasMany<Ivent>(s => s.Ivents)
-                .WithMany(c => c.Recivers)
+                .WithMany(c => c.Students)
                 .Map(cs =>
                 {
                     cs.MapLeftKey("StudentRefId");

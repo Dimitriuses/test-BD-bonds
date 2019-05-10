@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChatSet" EntityType="Model1.Chat" />
+          <EntitySet Name="UserSet" EntityType="Model1.User" />
+          <AssociationSet Name="ChatUser" Association="Model1.ChatUser">
+            <End Role="Chat" EntitySet="ChatSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <EntitySet Name="UserCatsSet" EntityType="Model1.UserCats" />
+          <AssociationSet Name="ChatUserCats" Association="Model1.ChatUserCats">
+            <End Role="Chat" EntitySet="ChatSet" />
+            <End Role="UserCats" EntitySet="UserCatsSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserUserCats" Association="Model1.UserUserCats">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="UserCats" EntitySet="UserCatsSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.ChatUser" FromRole="Chat" ToRole="User" />
+          <NavigationProperty Name="UserCats" Relationship="Model1.ChatUserCats" FromRole="Chat" ToRole="UserCats" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Chats" Type="String" Nullable="false" />
+          <NavigationProperty Name="Chat" Relationship="Model1.ChatUser" FromRole="User" ToRole="Chat" />
+          <NavigationProperty Name="UserCats" Relationship="Model1.UserUserCats" FromRole="User" ToRole="UserCats" />
+        </EntityType>
+        <Association Name="ChatUser">
+          <End Type="Model1.Chat" Role="Chat" Multiplicity="1" />
+          <End Type="Model1.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserCats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" />
+          <Property Name="ChatId" Type="String" Nullable="false" />
+          <NavigationProperty Name="Chat" Relationship="Model1.ChatUserCats" FromRole="UserCats" ToRole="Chat" />
+          <NavigationProperty Name="User" Relationship="Model1.UserUserCats" FromRole="UserCats" ToRole="User" />
+        </EntityType>
+        <Association Name="ChatUserCats">
+          <End Type="Model1.Chat" Role="Chat" Multiplicity="1" />
+          <End Type="Model1.UserCats" Role="UserCats" Multiplicity="*" />
+        </Association>
+        <Association Name="UserUserCats">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.UserCats" Role="UserCats" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

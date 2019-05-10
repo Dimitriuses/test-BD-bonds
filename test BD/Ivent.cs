@@ -11,10 +11,10 @@ namespace test_BD
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [ForeignKey("Student")]
         public int Organizator { get; set; }
-        [ForeignKey("Organizator")]
         public virtual Student Student { get; set; }
         //public virtual Student Student { get; set; }
-        public virtual ICollection<Student> Recivers { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

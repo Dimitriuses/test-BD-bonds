@@ -15,7 +15,8 @@ namespace test_BD
             Student tolik = new Student { Name = "TOLIK" };
             ctx.Students.Add(vasa);
             ctx.Students.Add(tolik);
-            ctx.Ivents.Add(new Ivent { Name = "Das ist FANTASTISCH", Organizator = vasa.Id, Recivers = new List<Student> { vasa, tolik } });
+            ctx.Ivents.Add(new Ivent { Name = "Das ist FANTASTISCH", Organizator = vasa.Id, Students = new List<Student> { vasa, tolik } });
+
             ctx.SaveChanges();
 
         }
