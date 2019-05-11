@@ -11,7 +11,7 @@ namespace test_BD
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [ForeignKey("Ivent")]
+        //[ForeignKey("Ivent")]
         public int Organizating { get; set; }
         public virtual Ivent Ivent { get; set; }
 

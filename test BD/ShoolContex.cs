@@ -14,7 +14,10 @@ namespace test_BD
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // configures one-to-many relationship
-            
+            modelBuilder.Entity<Ivent>()
+            .HasMany<Student>(g => g.Students)
+            .WithRequired(s => s.Ivent)
+            .HasForeignKey<int>(s => s.Organizating);
 
             modelBuilder.Entity<Student>()
                 .HasMany<Ivent>(s => s.Ivents)

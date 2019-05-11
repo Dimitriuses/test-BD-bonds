@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="Model1.Chat" Width="1.5" PointX="1.125" PointY="0.75" />
         <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="8" PointY="0.625" />
         <AssociationConnector Association="Model1.ChatUser" />
-        <EntityTypeShape EntityType="Model1.UserCats" Width="1.5" PointX="4.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.UserCats" Width="1.5" PointX="4.625" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="Model1.ChatUserCats" />
         <AssociationConnector Association="Model1.UserUserCats" />
       </Diagram>
